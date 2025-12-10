@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://tf0wtuuyycbk"]
+
+[ext_resource type="Texture2D" uid="uid://r2buk5yfy3gr" path="res://assets/sprites/New Piskel (1).png" id="1_wshno"]
+[ext_resource type="PackedScene" uid="uid://77nxj3ow85d5" path="res://scenes/protag.tscn" id="3_5lef6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_75ull"]
+texture = ExtResource("1_wshno")
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_cdeic"]
+sources/0 = SubResource("TileSetAtlasSource_75ull")
+
+[node name="game" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_cdeic")
+format = 2
+layer_0/tile_data = PackedInt32Array(131072, 0, 0, 131074, 0, 0, 131076, 0, 0, 131078, 0, 0, 196606, 0, 0, 196604, 0, 0, 196602, 0, 0, 65530, 0, 0, -65542, 0, 0, -196614, 0, 0, -327686, 0, 0, -327684, 0, 0, -327682, 0, 0, -393216, 0, 0, -393214, 0, 0, -393212, 0, 0, -393210, 0, 0, -262138, 0, 0, -131066, 0, 0, 6, 0, 0)
+
+[node name="Protag" parent="." instance=ExtResource("3_5lef6")]
