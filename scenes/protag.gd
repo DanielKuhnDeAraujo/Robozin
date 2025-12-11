@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+@onready var timer_pulo = $Jump_timer
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var pulo_inicial: int = -100
@@ -15,8 +15,11 @@ func _physics_process(delta):
 
 	# Handle jump.
 	if Input.is_action_just_pressed("pulo") and is_on_floor():
+		timer_pulo.start()
 		velocity.y = JUMP_VELOCITY
-
+	
+			
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("andar_esquerda","andar_direita")
@@ -25,4 +28,13 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
+func _on_jump_timer_timeout():
+	if !Input.is_action_pressed("pulo"):
+		pass
+	else:
+		print("pulim broxa")
+		velocity.y = -100
+		
 	move_and_slide()
+
+	 # Replace with function body.

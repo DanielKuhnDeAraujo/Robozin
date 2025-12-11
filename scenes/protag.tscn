@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://77nxj3ow85d5"]
 
-[ext_resource type="Script" path="res://scenes/protag.gd" id="1_g70v5"]
+[ext_resource type="Script" uid="uid://cqg8cdcv3pbg3" path="res://scenes/protag.gd" id="1_g70v5"]
 [ext_resource type="Texture2D" uid="uid://c8l0gtnhq616o" path="res://assets/sprites/temporário.png" id="2_da7vb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwxdc"]
@@ -16,6 +16,8 @@ texture = ExtResource("2_da7vb")
 position = Vector2(0.5, 3)
 shape = SubResource("RectangleShape2D_kwxdc")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Jump_timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[connection signal="timeout" from="Jump_timer" to="." method="_on_jump_timer_timeout"]
