@@ -1,7 +1,7 @@
 extends CharacterBody2D
-@onready var Coiote_timer = $Coiote_timer
-@onready var timer_jump_buffer = $Timer_jump_buffer
-@onready var timer_pulo_variável = $"Timer_pulo_variável"
+@onready var Coiote_timer: Timer = $Coiote_timer
+@onready var timer_jump_buffer: Timer = $Timer_jump_buffer
+@onready var timer_pulo_variável: Timer = $"Timer_pulo_variável"
 @onready var label: Label = $Label
 @onready var colision: CollisionShape2D = $colision
 @onready var death_timer: Timer = $Death_timer
@@ -12,7 +12,8 @@ const cancela_pulo: float = 0.3
 var is_jumping: bool = false
 var jump_buffer: bool = false
 var vida = 5
-var coiote_able: bool = false
+var coiote_ativo: bool = false
+var pulou: bool = false
 
 func _physics_process(delta: float) -> void:
 	#jump buffer
@@ -21,9 +22,22 @@ func _physics_process(delta: float) -> void:
 	# gravidade.
 	if !is_on_floor():
 		velocity += get_gravity() * delta
+	
+	#reinicia o coiote time
+	if is_on_floor():
+		pulou = false
+		if coiote_ativo:
+			coiote_ativo = false
+			Coiote_timer.stop()
+	#coiote time
+	if !pulou and !is_on_floor() and !coiote_ativo:
+		Coiote_timer.start()
+		coiote_ativo = true
 	# pulo
-	if Input.is_action_just_pressed("pulo") and is_on_floor():
+	if Input.is_action_just_pressed("pulo") and ( !Coiote_timer.is_stopped() or is_on_floor()):
 		pulo()
+		coiote_ativo = false
+		Coiote_timer.stop()
 	#inicia o jump buffer
 	elif Input.is_action_just_pressed("pulo") and !is_on_floor():
 		jump_buffer = true
@@ -51,12 +65,14 @@ func _on_timer_pulo_variável_timeout() -> void:
 func pulo():
 	velocity.y = max_jump
 	is_jumping = true
+	pulou = true
 
 func _on_timer_jump_buffer_timeout() -> void:
 	jump_buffer = false
 
 func _on_coiote_timer_timeout() -> void:
-	coiote_able = false # Replace with function body.
+	coiote_ativo = false # Replace with function body.
+
 func dano(dano: int) :
 	vida -= dano
 	label.text =str(vida)
