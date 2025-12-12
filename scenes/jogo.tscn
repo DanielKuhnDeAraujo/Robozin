@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=4 uid="uid://6ab4csixupru"]
+
+[ext_resource type="Texture2D" uid="uid://cru8p50xi80xq" path="res://assets/New Piskel (1).png" id="1_sq8yp"]
+[ext_resource type="PackedScene" uid="uid://cfocn7rvh5kjq" path="res://scenes/player.tscn" id="2_1b3iq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k05ng"]
+texture = ExtResource("1_sq8yp")
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.547005, -15.917498, 15.827568, -15.917498, 15.827568, 16.097355, -16.187286, 16.277214)
+
+[sub_resource type="TileSet" id="TileSet_0c0ry"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_k05ng")
+
+[node name="jogo" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAABAAMAAAAAAAAAAAD//wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD7/wMAAAAAAAAAAAD5/wMAAAAAAAAAAAD3/wMAAAAAAAAAAAD1/wMAAAAAAAAAAAD1/wEAAAAAAAAAAAD1////AAAAAAAAAAD1//3/AAAAAAAAAAD1//v/AAAAAAAAAAD1//n/AAAAAAAAAAD1//f/AAAAAAAAAAALAPf/AAAAAAAAAAALAPn/AAAAAAAAAAALAPv/AAAAAAAAAAALAP3/AAAAAAAAAAALAP//AAAAAAAAAAALAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAADAAMAAAAAAAAAAAALAAEAAAAAAAAAAAD3/wAAAAAAAAAAAAD5/wAAAAAAAAAAAAD9//7/AAAAAAAAAAD///7/AAAAAAAAAAAEAP7/AAAAAAAAAAAGAP7/AAAAAAAAAAD1//T/AAAAAAAAAAD1//X/AAAAAAAAAAD1//b/AAAAAAAAAAD3//T/AAAAAAAAAAD4//T/AAAAAAAAAAD5//T/AAAAAAAAAAD6//T/AAAAAAAAAAD7//T/AAAAAAAAAAD8//T/AAAAAAAAAAD9//T/AAAAAAAAAAD+//T/AAAAAAAAAAD///T/AAAAAAAAAAAAAPT/AAAAAAAAAAABAPT/AAAAAAAAAAACAPT/AAAAAAAAAAADAPT/AAAAAAAAAAAEAPT/AAAAAAAAAAAFAPT/AAAAAAAAAAAGAPT/AAAAAAAAAAAHAPT/AAAAAAAAAAAIAPT/AAAAAAAAAAAJAPT/AAAAAAAAAAAKAPT/AAAAAAAAAAALAPT/AAAAAAAAAAALAPX/AAAAAAAAAAALAPb/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_0c0ry")
+
+[node name="Player" parent="." instance=ExtResource("2_1b3iq")]
+position = Vector2(27, 16)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)
