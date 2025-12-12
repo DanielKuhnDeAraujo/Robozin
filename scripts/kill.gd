@@ -12,5 +12,6 @@ func _on_timer_timeout() -> void:
 	get_tree().reload_current_scene()'''
 
 func _on_body_entered(body: Node2D) -> void:
+	print(body.name)
 	if body.name == "Player" :
 		print("menos um de vida")

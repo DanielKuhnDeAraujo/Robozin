@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://mlbf4btrs0pq"]
+[gd_scene load_steps=7 format=4 uid="uid://mlbf4btrs0pq"]
 
 [ext_resource type="Texture2D" uid="uid://cru8p50xi80xq" path="res://assets/New Piskel (1).png" id="1_0065p"]
 [ext_resource type="PackedScene" uid="uid://cfocn7rvh5kjq" path="res://scenes/player.tscn" id="2_5hfcb"]
+[ext_resource type="PackedScene" uid="uid://c0ercwv2o6t8e" path="res://scenes/kill.tscn" id="3_5hfcb"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k05ng"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r71d3"]
 texture = ExtResource("1_0065p")
 0:0/size_in_atlas = Vector2i(2, 2)
 0:0/0 = 0
@@ -12,7 +13,9 @@ texture = ExtResource("1_0065p")
 [sub_resource type="TileSet" id="TileSet_0c0ry"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_k05ng")
+sources/0 = SubResource("TileSetAtlasSource_r71d3")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1v7su"]
 
 [node name="jogo" type="Node2D"]
 
@@ -25,3 +28,9 @@ position = Vector2(27, 16)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(3, 3)
+
+[node name="Area2D" parent="." instance=ExtResource("3_5hfcb")]
+position = Vector2(148, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_1v7su")
