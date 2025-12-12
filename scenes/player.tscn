@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 		jump_buffer = true
 		timer_jump_buffer.start()
 	#se estiver pulando e largar o botão
-	if Input.is_action_just_released(\"pulo\") and is_jumping:
+	if Input.is_action_just_released(\"pulo\") and is_jumping and velocity.y < 0:
 		velocity.y *= cancela_pulo
 		is_jumping = false
 	#se não largar o botão até o fim do timer
@@ -69,11 +69,11 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="Timer_pulo_variável" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.15
 one_shot = true
 
 [node name="Timer_jump_buffer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.1
 one_shot = true
 
 [connection signal="timeout" from="Timer_pulo_variável" to="." method="_on_timer_pulo_variável_timeout"]
