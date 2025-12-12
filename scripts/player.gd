@@ -6,8 +6,8 @@ extends CharacterBody2D
 @onready var colision: CollisionShape2D = $colision
 @onready var death_timer: Timer = $Death_timer
 #variáveis
-const SPEED: float = 300.0
-const max_jump: float = -400.0
+const SPEED: float = 250.0
+const max_jump: float = -370.0
 const cancela_pulo: float = 0.3
 var is_jumping: bool = false
 var jump_buffer: bool = false
@@ -21,17 +21,13 @@ func _physics_process(delta: float) -> void:
 	# gravidade.
 	if !is_on_floor():
 		velocity += get_gravity() * delta
-		Coiote_timer.start()
-		coiote_able = true
 	# pulo
 	if Input.is_action_just_pressed("pulo") and is_on_floor():
 		pulo()
 	#inicia o jump buffer
-	elif Input.is_action_just_pressed("pulo") and !is_on_floor() and !coiote_able:
+	elif Input.is_action_just_pressed("pulo") and !is_on_floor():
 		jump_buffer = true
 		timer_jump_buffer.start()
-	elif Input.is_action_just_pressed("pulo") and !is_on_floor() and coiote_able:
-		pulo()
 	#se estiver pulando e largar o botão
 	if Input.is_action_just_released("pulo") and is_jumping and velocity.y < 0:
 		velocity.y *= cancela_pulo
