@@ -2,6 +2,9 @@ extends CharacterBody2D
 @onready var Coiote_timer = $Coiote_timer
 @onready var timer_jump_buffer = $Timer_jump_buffer
 @onready var timer_pulo_variável = $"Timer_pulo_variável"
+@onready var label: Label = $Label
+@onready var colision: CollisionShape2D = $colision
+@onready var death_timer: Timer = $Death_timer
 #variáveis
 const SPEED: float = 300.0
 const max_jump: float = -400.0
@@ -58,3 +61,15 @@ func _on_timer_jump_buffer_timeout() -> void:
 
 func _on_coiote_timer_timeout() -> void:
 	coiote_able = false # Replace with function body.
+func dano(dano: int) :
+	vida -= dano
+	label.text =str(vida)
+	if vida <= 0 : 
+		label.text =str("Morreu!")
+		Engine.time_scale=0.5
+		colision.queue_free()
+		death_timer.start()
+		
+func _on_death_timer_timeout() -> void:
+	Engine.time_scale=1
+	get_tree().reload_current_scene()
