@@ -30,7 +30,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Coiote_timer" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.1
 one_shot = true
 
 [node name="Death_timer" type="Timer" parent="."]
@@ -45,6 +45,13 @@ offset_bottom = -1.0
 text = "5"
 label_settings = SubResource("LabelSettings_dqkch")
 horizontal_alignment = 1
+
+[node name="f" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -47.0
+offset_right = 21.0
+offset_bottom = -24.0
+text = "teste"
 
 [connection signal="timeout" from="Timer_pulo_variável" to="." method="_on_timer_pulo_variável_timeout"]
 [connection signal="timeout" from="Timer_jump_buffer" to="." method="_on_timer_jump_buffer_timeout"]

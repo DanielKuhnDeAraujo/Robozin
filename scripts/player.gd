@@ -1,43 +1,45 @@
 extends CharacterBody2D
-@onready var Coiote_timer: Timer = $Coiote_timer
 @onready var timer_jump_buffer: Timer = $Timer_jump_buffer
 @onready var timer_pulo_variável: Timer = $"Timer_pulo_variável"
 @onready var label: Label = $Label
+@onready var testes: Label = $testes
 @onready var colision: CollisionShape2D = $colision
 @onready var death_timer: Timer = $Death_timer
 #variáveis
 const SPEED: float = 250.0
-const max_jump: float = -370.0
+const max_jump: float = -385.0
 const cancela_pulo: float = 0.3
 var is_jumping: bool = false
 var jump_buffer: bool = false
 var vida = 5
-var coiote_ativo: bool = false
 var pulou: bool = false
+var timer_coiote: float = 0
+var tempo_total_coiote: float = 0.1
 
 func _physics_process(delta: float) -> void:
+	#testes
 	#jump buffer
 	if jump_buffer and is_on_floor():
 		pulo()
-	# gravidade.
+	# checks fora do chão
 	if !is_on_floor():
+		#gravidade
+		timer_coiote -= delta
 		velocity += get_gravity() * delta
-	
+		# se não pulou ativa o coiote
+		if pulou:
+			timer_coiote = 0
+		# se está fora do chão e o coiote_ativo == able, ele permite pular 
+		if Input.is_action_just_pressed("pulo") and timer_coiote > 0:
+			pulo()
 	#reinicia o coiote time
 	if is_on_floor():
 		pulou = false
-		if coiote_ativo:
-			coiote_ativo = false
-			Coiote_timer.stop()
-	#coiote time
-	if !pulou and !is_on_floor() and !coiote_ativo:
-		Coiote_timer.start()
-		coiote_ativo = true
-	# pulo
-	if Input.is_action_just_pressed("pulo") and ( !Coiote_timer.is_stopped() or is_on_floor()):
-		pulo()
-		coiote_ativo = false
-		Coiote_timer.stop()
+		timer_coiote = tempo_total_coiote
+		# pulo
+		if Input.is_action_just_pressed("pulo"):
+			pulo()
+			pulou = true
 	#inicia o jump buffer
 	elif Input.is_action_just_pressed("pulo") and !is_on_floor():
 		jump_buffer = true
@@ -66,12 +68,10 @@ func pulo():
 	velocity.y = max_jump
 	is_jumping = true
 	pulou = true
+	timer_coiote = 0
 
 func _on_timer_jump_buffer_timeout() -> void:
 	jump_buffer = false
-
-func _on_coiote_timer_timeout() -> void:
-	coiote_ativo = false # Replace with function body.
 
 func dano(dano: int) :
 	vida -= dano
