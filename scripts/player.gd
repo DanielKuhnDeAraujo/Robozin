@@ -73,7 +73,7 @@ func _on_timer_jump_buffer_timeout() -> void:
 func _on_coiote_timer_timeout() -> void:
 	coiote_ativo = false # Replace with function body.
 
-func dano(dano: int) :
+func dano(dano: int,tipo: String) :
 	vida -= dano
 	label.text =str(vida)
 	if vida <= 0 : 
