@@ -34,7 +34,7 @@ zoom = Vector2(3, 3)
 script = ExtResource("3_r71d3")
 
 [node name="Area2D" parent="Node" instance=ExtResource("3_5hfcb")]
-position = Vector2(148, 18)
+position = Vector2(129, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Area2D"]
 shape = SubResource("RectangleShape2D_1v7su")
