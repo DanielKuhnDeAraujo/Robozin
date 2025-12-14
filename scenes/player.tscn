@@ -46,7 +46,12 @@ text = "5"
 label_settings = SubResource("LabelSettings_dqkch")
 horizontal_alignment = 1
 
+[node name="Timer_Knock" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="timeout" from="Timer_pulo_variável" to="." method="_on_timer_pulo_variável_timeout"]
 [connection signal="timeout" from="Timer_jump_buffer" to="." method="_on_timer_jump_buffer_timeout"]
 [connection signal="timeout" from="Coiote_timer" to="." method="_on_coiote_timer_timeout"]
 [connection signal="timeout" from="Death_timer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="Timer_Knock" to="." method="_on_timer_knock_timeout"]

@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var label: Label = $Label
 @onready var colision: CollisionShape2D = $colision
 @onready var death_timer: Timer = $Death_timer
+@onready var timer_knock: Timer = $Timer_Knock
 #variáveis
 const SPEED: float = 250.0
 const max_jump: float = -370.0
@@ -14,6 +15,7 @@ var jump_buffer: bool = false
 var vida = 5
 var coiote_ativo: bool = false
 var pulou: bool = false
+var knock = "n"
 
 func _physics_process(delta: float) -> void:
 	#jump buffer
@@ -22,7 +24,6 @@ func _physics_process(delta: float) -> void:
 	# gravidade.
 	if !is_on_floor():
 		velocity += get_gravity() * delta
-	
 	#reinicia o coiote time
 	if is_on_floor():
 		pulou = false
@@ -55,8 +56,17 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+		#knock
+	if knock == "esquerda" :
+		velocity.x=-290
+		velocity.y=0
+	if knock == "direita" :
+		velocity.x=290
+		velocity.y=0
+	
 	move_and_slide()
+	
+	
 #funções
 
 func _on_timer_pulo_variável_timeout() -> void:
@@ -76,12 +86,23 @@ func _on_coiote_timer_timeout() -> void:
 func dano(dano: int,tipo: String) :
 	vida -= dano
 	label.text =str(vida)
+	
 	if vida <= 0 : 
 		label.text =str("Morreu!")
 		Engine.time_scale=0.5
 		colision.queue_free()
 		death_timer.start()
+	else :
+		if tipo == "inimigo esquerda" :
+			knock="esquerda"
+		if tipo == "inimigo direita" :
+			knock="direita"
+		timer_knock.start()
 		
 func _on_death_timer_timeout() -> void:
 	Engine.time_scale=1
 	get_tree().reload_current_scene()
+
+
+func _on_timer_knock_timeout() -> void:
+	knock = "n"
