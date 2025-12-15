@@ -4,18 +4,24 @@
 [ext_resource type="Texture2D" uid="uid://du6eanikw3nv3" path="res://assets/mosca.png" id="2_2ssye"]
 [ext_resource type="PackedScene" uid="uid://c0ercwv2o6t8e" path="res://scenes/kill.tscn" id="2_bfrgy"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2ssye"]
-radius = 115.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_kwhvw"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ssye"]
+radius = 179.06982
+
 [node name="mosca" type="CharacterBody2D"]
+collision_layer = 2147483648
 script = ExtResource("1_2ssye")
 
 [node name="Mosca" type="Sprite2D" parent="."]
 texture = ExtResource("2_2ssye")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(1, -5)
+shape = SubResource("CircleShape2D_kwhvw")
+debug_color = Color(1.347661e-06, 0.5940961, 0.24482763, 0.41960785)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2
