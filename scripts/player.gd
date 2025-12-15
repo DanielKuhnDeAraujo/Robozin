@@ -94,9 +94,9 @@ func dano(dano: int,tipo: String) :
 		death_timer.start()
 	else :
 		if tipo == "inimigo esquerda" :
-			knock="esquerda"
-		if tipo == "inimigo direita" :
 			knock="direita"
+		if tipo == "inimigo direita" :
+			knock="esquerda"
 		timer_knock.start()
 		
 func _on_death_timer_timeout() -> void:

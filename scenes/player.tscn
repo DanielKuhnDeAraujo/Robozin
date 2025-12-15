@@ -12,6 +12,7 @@ font = ExtResource("3_qhqgy")
 font_size = 8
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
