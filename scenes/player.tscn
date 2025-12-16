@@ -12,6 +12,7 @@ font = ExtResource("3_qhqgy")
 font_size = 8
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -52,8 +53,16 @@ offset_top = -47.0
 offset_right = 21.0
 offset_bottom = -24.0
 text = "teste"
+[node name="Timer_Knock" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="invulnerabilidade" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="Timer_pulo_variável" to="." method="_on_timer_pulo_variável_timeout"]
 [connection signal="timeout" from="Timer_jump_buffer" to="." method="_on_timer_jump_buffer_timeout"]
 [connection signal="timeout" from="Coiote_timer" to="." method="_on_coiote_timer_timeout"]
 [connection signal="timeout" from="Death_timer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="Timer_Knock" to="." method="_on_timer_knock_timeout"]
+[connection signal="timeout" from="invulnerabilidade" to="." method="_on_invulnerabilidade_timeout"]
