@@ -23,14 +23,10 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="Timer_pulo_variável" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.07
 one_shot = true
 
 [node name="Timer_jump_buffer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
-[node name="Coiote_timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
@@ -56,7 +52,6 @@ one_shot = true
 
 [connection signal="timeout" from="Timer_pulo_variável" to="." method="_on_timer_pulo_variável_timeout"]
 [connection signal="timeout" from="Timer_jump_buffer" to="." method="_on_timer_jump_buffer_timeout"]
-[connection signal="timeout" from="Coiote_timer" to="." method="_on_coiote_timer_timeout"]
 [connection signal="timeout" from="Death_timer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="Timer_Knock" to="." method="_on_timer_knock_timeout"]
 [connection signal="timeout" from="invulnerabilidade" to="." method="_on_invulnerabilidade_timeout"]

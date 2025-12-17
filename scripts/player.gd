@@ -2,14 +2,17 @@ extends CharacterBody2D
 @onready var timer_jump_buffer: Timer = $Timer_jump_buffer
 @onready var timer_pulo_variável: Timer = $"Timer_pulo_variável"
 @onready var label: Label = $Label
-@onready var testes: Label = $testes
 @onready var colision: CollisionShape2D = $colision
 @onready var death_timer: Timer = $Death_timer
 @onready var timer_knock: Timer = $Timer_Knock
 @onready var invulnerabilidade: Timer = $invulnerabilidade
 @onready var sprite_2d: Sprite2D = $Sprite2D
 #variáveis
-const SPEED: float = 250.0
+var SPEED: float = 150.0
+const MAX_SPEED: float = 250
+const MIN_SPEED: float = 150
+const aceleracao: float = 15
+const friccao: float = 25
 const max_jump: float = -385.0
 const cancela_pulo: float = 0.3
 var is_jumping: bool = false
@@ -21,6 +24,8 @@ var tempo_total_coiote: float = 0.1
 var knock = "n"
 var invul = false
 var coiote_ativo
+var direcao: Vector2 = Vector2.RIGHT
+
 func _physics_process(delta: float) -> void:
 	#testes
 	#jump buffer
@@ -58,10 +63,27 @@ func _physics_process(delta: float) -> void:
 		pass
 	# input de movimento
 	var direction := Input.get_axis("andar_esquerda", "andar_direita")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	if direction == 1:
+		if SPEED < 0:
+			SPEED = 1
+		SPEED = move_toward(SPEED, MAX_SPEED, aceleracao)
+		velocity.x = SPEED
+		sprite_2d.flip_h = false
+		direcao = Vector2.RIGHT
+	elif direction == -1:
+		if SPEED > 0:
+			SPEED = -1
+		SPEED = move_toward(SPEED, -MAX_SPEED, aceleracao)
+		velocity.x = SPEED
+		sprite_2d.flip_h = true
+		direcao = Vector2.LEFT
+	elif direction == 0:
+		SPEED = move_toward(SPEED, 0, friccao)
+		velocity.x = SPEED
+		#if direcao == Vector2.RIGHT:
+			#max(SPEED - aceleracao, MIN_SPEED)
+		#elif direcao == Vector2.LEFT:
+			#min(SPEED - aceleracao, MIN_SPEED)
 		#knock
 	if knock == "esquerda" :
 		velocity.x=-290
