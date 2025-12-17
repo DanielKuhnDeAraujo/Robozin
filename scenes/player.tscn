@@ -53,6 +53,7 @@ offset_top = -47.0
 offset_right = 21.0
 offset_bottom = -24.0
 text = "teste"
+
 [node name="Timer_Knock" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true

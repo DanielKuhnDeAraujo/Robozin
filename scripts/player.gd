@@ -20,7 +20,7 @@ var timer_coiote: float = 0
 var tempo_total_coiote: float = 0.1
 var knock = "n"
 var invul = false
-
+var coiote_ativo
 func _physics_process(delta: float) -> void:
 	#testes
 	#jump buffer
@@ -86,20 +86,13 @@ func pulo():
 func _on_timer_jump_buffer_timeout() -> void:
 	jump_buffer = false
 
-func dano(dano: int) :
-	vida -= dano
-	label.text =str(vida)
-	if vida <= 0 : 
-		label.text =str("Morreu!")
-		Engine.time_scale=0.5
-		colision.queue_free()
-		death_timer.start()
+
 func _on_coiote_timer_timeout() -> void:
 	coiote_ativo = false # Replace with function body.
 
-func dano(dano: int,tipo: String) :
+func dano(qtd: int,tipo: String) :
 	if not invul:
-		vida -= dano
+		vida -= qtd
 		label.text =str(vida)
 		if vida <= 0 : 
 			label.text =str("Morreu!")
