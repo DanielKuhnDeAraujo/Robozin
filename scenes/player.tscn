@@ -47,13 +47,6 @@ text = "5"
 label_settings = SubResource("LabelSettings_dqkch")
 horizontal_alignment = 1
 
-[node name="f" type="Label" parent="."]
-offset_left = -19.0
-offset_top = -47.0
-offset_right = 21.0
-offset_bottom = -24.0
-text = "teste"
-
 [node name="Timer_Knock" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
