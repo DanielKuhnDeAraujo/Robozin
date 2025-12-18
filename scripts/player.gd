@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var timer_knock: Timer = $Timer_Knock
 @onready var invulnerabilidade: Timer = $invulnerabilidade
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var area_aspirador: Area2D = $Area2D
 #variáveis
 var SPEED: float = 150.0
 const MAX_SPEED: float = 250
@@ -64,6 +65,7 @@ func _physics_process(delta: float) -> void:
 	# input de movimento
 	var direction := Input.get_axis("andar_esquerda", "andar_direita")
 	if direction == 1:
+		area_aspirador.scale.x = 1
 		if SPEED < 0:
 			SPEED = 1
 		SPEED = move_toward(SPEED, MAX_SPEED, aceleracao)
@@ -71,6 +73,7 @@ func _physics_process(delta: float) -> void:
 		sprite_2d.flip_h = false
 		direcao = Vector2.RIGHT
 	elif direction == -1:
+		area_aspirador.scale.x = -1
 		if SPEED > 0:
 			SPEED = -1
 		SPEED = move_toward(SPEED, -MAX_SPEED, aceleracao)
@@ -80,10 +83,12 @@ func _physics_process(delta: float) -> void:
 	elif direction == 0:
 		SPEED = move_toward(SPEED, 0, friccao)
 		velocity.x = SPEED
-		#if direcao == Vector2.RIGHT:
-			#max(SPEED - aceleracao, MIN_SPEED)
-		#elif direcao == Vector2.LEFT:
-			#min(SPEED - aceleracao, MIN_SPEED)
+		
+	if Input.is_action_pressed("aspirar"):
+		area_aspirador.monitoring = true
+		print("está aspirando")
+	else:
+		area_aspirador.monitoring = false  
 		#knock
 	if knock == "esquerda" :
 		velocity.x=-290

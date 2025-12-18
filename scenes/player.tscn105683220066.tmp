@@ -56,7 +56,6 @@ one_shot = true
 one_shot = true
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
 monitoring = false
 script = ExtResource("4_qlg0r")
 
@@ -74,5 +73,4 @@ texture = ExtResource("4_dqkch")
 [connection signal="timeout" from="Death_timer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="Timer_Knock" to="." method="_on_timer_knock_timeout"]
 [connection signal="timeout" from="invulnerabilidade" to="." method="_on_invulnerabilidade_timeout"]
-[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
