@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://blh18oii8husf"]
+
+[ext_resource type="Texture2D" uid="uid://5tvaej4dp8ty" path="res://assets/cueio.png" id="1_cwvvp"]
+[ext_resource type="PackedScene" uid="uid://c0ercwv2o6t8e" path="res://scenes/kill.tscn" id="2_3cpjk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cpjk"]
+atlas = ExtResource("1_cwvvp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0o8x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cpjk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j0o8x"]
+radius = 5.0
+height = 20.0
+
+[node name="Cueio" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_j0o8x")
+
+[node name="kill" parent="." instance=ExtResource("2_3cpjk")]
+position = Vector2(0, -17)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="kill"]
+position = Vector2(0, 10)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_j0o8x")
+debug_color = Color(0.92302436, 0, 0.1419878, 0.41960785)
