@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://blh18oii8husf"]
+[gd_scene load_steps=8 format=3 uid="uid://blh18oii8husf"]
 
 [ext_resource type="Texture2D" uid="uid://5tvaej4dp8ty" path="res://assets/cueio.png" id="1_cwvvp"]
+[ext_resource type="Script" uid="uid://dkc4lj7jldu5r" path="res://scripts/cueio.gd" id="1_j0o8x"]
 [ext_resource type="PackedScene" uid="uid://c0ercwv2o6t8e" path="res://scenes/kill.tscn" id="2_3cpjk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3cpjk"]
@@ -22,7 +23,17 @@ animations = [{
 radius = 5.0
 height = 20.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j0o8x"]
+size = Vector2(25, 12)
+
 [node name="Cueio" type="CharacterBody2D"]
+collision_layer = 2147483648
+script = ExtResource("1_j0o8x")
+
+[node name="raycast" type="RayCast2D" parent="."]
+position = Vector2(0, -7)
+target_position = Vector2(-70, 0)
+collision_mask = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
@@ -36,3 +47,13 @@ position = Vector2(0, 10)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_j0o8x")
 debug_color = Color(0.92302436, 0, 0.1419878, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -7)
+shape = SubResource("RectangleShape2D_j0o8x")
+debug_color = Color(0, 0.5132932, 0.33815837, 0.41960785)
+
+[node name="pulo" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="pulo" to="." method="_on_pulo_timeout"]
