@@ -31,7 +31,9 @@ func _physics_process(delta: float) -> void:
 func _on_pulo_timeout() -> void:
 		velocity.y-=150
 		if  seguindo == 'f':
-			velocity.x=50 *(randi() % 3 -1)
+			velocity.x=50 *(randi() % 2)
+			if velocity.x== 0 :
+				velocity.x=-50
 		if seguindo == "direita" :
 			velocity.x = 50
 		if seguindo == "esquerda" : 
