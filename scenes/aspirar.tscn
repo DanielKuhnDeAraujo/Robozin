@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3dcugwhtlttc"]
+
+[ext_resource type="Texture2D" uid="uid://cjne0aja4q8uv" path="res://icon.svg" id="1_aka5j"]
+[ext_resource type="Script" uid="uid://de2db5knb1ses" path="res://scripts/aspirador.gd" id="1_onpi2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onpi2"]
+size = Vector2(124.347824, 126.213585)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onpi2"]
+radius = 4.0
+
+[node name="Aspirar" type="Area2D"]
+script = ExtResource("1_onpi2")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(37, 0)
+scale = Vector2(0.575, 0.216)
+texture = ExtResource("1_aka5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(36, -1.009742e-28)
+scale = Vector2(0.575, 0.206)
+shape = SubResource("RectangleShape2D_onpi2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_onpi2")
+debug_color = Color(0.61145085, 0.51008993, 0.48224527, 0.41960785)

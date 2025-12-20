@@ -7,15 +7,21 @@ extends CharacterBody2D
 @onready var timer_knock: Timer = $Timer_Knock
 @onready var invulnerabilidade: Timer = $invulnerabilidade
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var area_aspirador: Area2D = $Area2D
+@onready var spawn_posit: Marker2D = $Spawn_posit
+@onready var colisor: RayCast2D = $colisor_front
+
+
 #variáveis
 var SPEED: float = 150.0
+
 const MAX_SPEED: float = 250
 const MIN_SPEED: float = 150
 const aceleracao: float = 15
 const friccao: float = 25
 const max_jump: float = -385.0
 const cancela_pulo: float = 0.3
+@onready var sugador = preload("res://scenes/aspirar.tscn")
+
 var is_jumping: bool = false
 var jump_buffer: bool = false
 var vida = 5
@@ -25,7 +31,12 @@ var tempo_total_coiote: float = 0.1
 var knock = "n"
 var invul = false
 var coiote_ativo
-var direcao: Vector2 = Vector2.RIGHT
+@export var direcao: int = -1
+var pode_sugar = true
+var contador = 0
+var sugados
+var qtd_sugados = 0
+var area_aspirador
 
 func _physics_process(delta: float) -> void:
 	#testes
@@ -65,30 +76,40 @@ func _physics_process(delta: float) -> void:
 	# input de movimento
 	var direction := Input.get_axis("andar_esquerda", "andar_direita")
 	if direction == 1:
-		area_aspirador.scale.x = 1
+		if Input.is_action_pressed("andar_direita"):
+			if sign(spawn_posit.position.x) == -1: #esse position é q nem o global position so q ele é relativo ao nó pai
+				spawn_posit.position.x *= -1
 		if SPEED < 0:
 			SPEED = 1
 		SPEED = move_toward(SPEED, MAX_SPEED, aceleracao)
 		velocity.x = SPEED
 		sprite_2d.flip_h = false
-		direcao = Vector2.RIGHT
+		direcao = direction
+		colisor.scale.x = direction
 	elif direction == -1:
-		area_aspirador.scale.x = -1
+		if Input.is_action_pressed("andar_esquerda"):
+			if sign(spawn_posit.position.x) == 1:
+				spawn_posit.position.x *= -1
 		if SPEED > 0:
 			SPEED = -1
 		SPEED = move_toward(SPEED, -MAX_SPEED, aceleracao)
 		velocity.x = SPEED
 		sprite_2d.flip_h = true
-		direcao = Vector2.LEFT
+		direcao = direction
+		colisor.scale.x = direction
 	elif direction == 0:
 		SPEED = move_toward(SPEED, 0, friccao)
 		velocity.x = SPEED
 		
-	if Input.is_action_pressed("aspirar"):
-		area_aspirador.monitoring = true
-		print("está aspirando")
-	else:
-		area_aspirador.monitoring = false  
+	if Input.is_action_pressed("aspirar") and pode_sugar:
+		print(pode_sugar)
+		aspirar()
+		
+	if Input.is_action_just_released("aspirar"):
+		pode_sugar = true
+		contador = 0
+
+	
 		#knock
 	if knock == "esquerda" :
 		velocity.x=-290
@@ -144,7 +165,23 @@ func _on_death_timer_timeout() -> void:
 func _on_timer_knock_timeout() -> void:
 	knock = "n"
 
-
 func _on_invulnerabilidade_timeout() -> void:
 	sprite_2d.modulate.a =1
 	invul=false # Replace with function body.
+	
+#funcao p aspirar
+func aspirar():
+	pode_sugar = false
+	var instance = sugador.instantiate()
+	add_child(instance)
+	instance.global_position = spawn_posit.global_position
+	instance.scale.x = direcao
+	area_aspirador = instance
+	instance.suguei.connect(inimigo_sugado)
+
+#funcao p inimigos q forem sugados
+func inimigo_sugado(inimigo):
+	qtd_sugados += 1 #tem q armazenar isso num array, dps algm ou eu msm boto
+	sugados = true
+	print(inimigo.name)
+	print("inimigo sugado porra")

@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfocn7rvh5kjq"]
+[gd_scene load_steps=6 format=3 uid="uid://cfocn7rvh5kjq"]
 
 [ext_resource type="Texture2D" uid="uid://bc26ruaqc8hhq" path="res://assets/temporário.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://7ehx3dxa468b" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="FontFile" uid="uid://d21e3ipl1ouq" path="res://assets/PixelOperator8-Bold.ttf" id="3_qhqgy"]
-[ext_resource type="Texture2D" uid="uid://cjne0aja4q8uv" path="res://icon.svg" id="4_dqkch"]
-[ext_resource type="Script" uid="uid://de2db5knb1ses" path="res://scripts/aspirador.gd" id="4_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(14, 26)
@@ -12,9 +10,6 @@ size = Vector2(14, 26)
 [sub_resource type="LabelSettings" id="LabelSettings_dqkch"]
 font = ExtResource("3_qhqgy")
 font_size = 8
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlg0r"]
-size = Vector2(72.75, 26)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -55,24 +50,15 @@ one_shot = true
 [node name="invulnerabilidade" type="Timer" parent="."]
 one_shot = true
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-monitoring = false
-script = ExtResource("4_qlg0r")
+[node name="Spawn_posit" type="Marker2D" parent="."]
+position = Vector2(7, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(43.375, 3)
-shape = SubResource("RectangleShape2D_qlg0r")
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-position = Vector2(44, 3.499998)
-scale = Vector2(0.5625, 0.2109375)
-texture = ExtResource("4_dqkch")
+[node name="colisor_front" type="RayCast2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+target_position = Vector2(9, 0)
 
 [connection signal="timeout" from="Timer_pulo_variável" to="." method="_on_timer_pulo_variável_timeout"]
 [connection signal="timeout" from="Timer_jump_buffer" to="." method="_on_timer_jump_buffer_timeout"]
 [connection signal="timeout" from="Death_timer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="Timer_Knock" to="." method="_on_timer_knock_timeout"]
 [connection signal="timeout" from="invulnerabilidade" to="." method="_on_invulnerabilidade_timeout"]
-[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
