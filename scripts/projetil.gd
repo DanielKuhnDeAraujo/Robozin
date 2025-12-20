@@ -17,8 +17,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x += velocidade * direction * delta
 	elif eixo == 1 or eixo == -1:
 		velocity.y += velocidade * -eixo * delta
-	move_and_slide()
+	var collision = move_and_collide(velocity*delta)
+	if collision !=null :
+		queue_free()
+		print("sumiu")
 
 func _on_timer_timeout() -> void:
-	queue_free()
-	print("sumiu")
+	pass
