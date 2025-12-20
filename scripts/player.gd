@@ -9,19 +9,18 @@ extends CharacterBody2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var spawn_posit: Marker2D = $Spawn_posit
 @onready var colisor: RayCast2D = $colisor_front
-
+@onready var main = get_tree().get_root().get_node("jogo")
 
 #variáveis
 var SPEED: float = 150.0
 
-const MAX_SPEED: float = 250
-const MIN_SPEED: float = 150
+const MAX_SPEED: float = 200
 const aceleracao: float = 15
 const friccao: float = 25
 const max_jump: float = -385.0
-const cancela_pulo: float = 0.3
+const cancela_pulo: float = 0.5
 @onready var sugador = preload("res://scenes/aspirar.tscn")
-
+@onready var projetil = preload("res://scenes/projetil.tscn")
 var is_jumping: bool = false
 var jump_buffer: bool = false
 var vida = 5
@@ -37,9 +36,14 @@ var contador = 0
 var sugados
 var qtd_sugados = 0
 var area_aspirador
+var eixo: float = 0  #determina o eixo em que o projétil vai se mover
+var direction: float = 1
+var spawn_projetil
+var ultima_olhou: float = 1#eu sei, é tosco, mas é necessário :(
 
 func _physics_process(delta: float) -> void:
-	#testes
+	#obtem a posição do spawn de projétil (eu sei, tosco)
+	spawn_projetil = spawn_posit.global_position
 	#jump buffer
 	if jump_buffer and is_on_floor():
 		pulo()
@@ -73,8 +77,10 @@ func _physics_process(delta: float) -> void:
 	#se não largar o botão até o fim do timer
 	else:
 		pass
+	#input de visão cima/baixo:
+	eixo = Input.get_axis("olhar_baixo","olhar_cima")
 	# input de movimento
-	var direction := Input.get_axis("andar_esquerda", "andar_direita")
+	direction = Input.get_axis("andar_esquerda", "andar_direita")
 	if direction == 1:
 		if Input.is_action_pressed("andar_direita"):
 			if sign(spawn_posit.position.x) == -1: #esse position é q nem o global position so q ele é relativo ao nó pai
@@ -85,6 +91,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = SPEED
 		sprite_2d.flip_h = false
 		direcao = direction
+		ultima_olhou = direction
 		colisor.scale.x = direction
 	elif direction == -1:
 		if Input.is_action_pressed("andar_esquerda"):
@@ -96,6 +103,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = SPEED
 		sprite_2d.flip_h = true
 		direcao = direction
+		ultima_olhou = direction
 		colisor.scale.x = direction
 	elif direction == 0:
 		SPEED = move_toward(SPEED, 0, friccao)
@@ -108,8 +116,20 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("aspirar"):
 		pode_sugar = true
 		contador = 0
-
 	
+	if Input.is_action_just_pressed("atirar"):
+		atirar()
+		if eixo != 0:
+			velocity.y = 0
+			velocity.y += 350 * eixo 
+		else:
+			timer_knock.start()
+			if ultima_olhou == 1:
+				#velocity.x = 0
+				velocity.x += 1000 * -ultima_olhou
+			elif ultima_olhou == -1:
+				#velocity.x = 0
+				velocity.x += 1000 * -ultima_olhou
 		#knock
 	if knock == "esquerda" :
 		velocity.x=-290
@@ -185,3 +205,11 @@ func inimigo_sugado(inimigo):
 	sugados = true
 	print(inimigo.name)
 	print("inimigo sugado porra")
+
+#função do tiro:
+func atirar():
+	var instancia = projetil.instantiate()
+	instancia.direction = ultima_olhou
+	instancia.eixo =  eixo
+	instancia.posicao  = spawn_projetil
+	main.add_child.call_deferred(instancia)
