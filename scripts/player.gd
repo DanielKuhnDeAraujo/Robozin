@@ -144,6 +144,7 @@ func _physics_process(delta: float) -> void:
 				#velocity.x = 0
 				knock = "tirodireita"
 		ammo -= 1
+		qtd_sugados-=1
 		#knock
 	if knock == "esquerda" :
 		velocity.x=-290
@@ -227,8 +228,10 @@ func inimigo_sugado(inimigo):
 
 #função do tiro:
 func atirar():
+
 	var instancia = projetil.instantiate()
 	instancia.direction = ultima_olhou
 	instancia.eixo =  eixo
 	instancia.posicao  = spawn_projetil
 	main.add_child.call_deferred(instancia)
+	

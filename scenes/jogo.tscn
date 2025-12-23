@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cru8p50xi80xq" path="res://assets/New Piskel (1).png" id="1_sq8yp"]
 [ext_resource type="PackedScene" uid="uid://cfocn7rvh5kjq" path="res://scenes/player.tscn" id="2_1b3iq"]
 [ext_resource type="PackedScene" uid="uid://b4omf38i3lm37" path="res://scenes/mosca.tscn" id="3_1b3iq"]
-[ext_resource type="PackedScene" uid="uid://blh18oii8husf" path="res://scenes/cueio.tscn" id="4_k05ng"]
-[ext_resource type="PackedScene" uid="uid://34aovjujrsni" path="res://scenes/spawner.tscn" id="5_0c0ry"]
+[ext_resource type="PackedScene" path="res://scenes/cueio.tscn" id="4_k05ng"]
+[ext_resource type="PackedScene" path="res://scenes/spawner.tscn" id="5_0c0ry"]
 [ext_resource type="Script" uid="uid://dubcrbr6od3x5" path="res://scenes/node.gd" id="5_4sjka"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sq8yp"]
@@ -27,7 +27,6 @@ tile_set = SubResource("TileSet_1b3iq")
 [node name="Player" parent="." instance=ExtResource("2_1b3iq")]
 unique_name_in_owner = true
 position = Vector2(27, 16)
-direcao = null
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2.5, 2.5)
@@ -36,9 +35,11 @@ position_smoothing_speed = 10.0
 
 [node name="mosca" parent="." instance=ExtResource("3_1b3iq")]
 position = Vector2(570, -192)
+collision_layer = 2147483648
 
 [node name="mosca2" parent="." instance=ExtResource("3_1b3iq")]
 position = Vector2(857, 15)
+collision_layer = 2147483648
 
 [node name="Cueio" parent="." instance=ExtResource("4_k05ng")]
 position = Vector2(134, 32)
