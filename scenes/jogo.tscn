@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://6ab4csixupru"]
+[gd_scene load_steps=9 format=4 uid="uid://6ab4csixupru"]
 
 [ext_resource type="Texture2D" uid="uid://cru8p50xi80xq" path="res://assets/New Piskel (1).png" id="1_sq8yp"]
 [ext_resource type="PackedScene" uid="uid://cfocn7rvh5kjq" path="res://scenes/player.tscn" id="2_1b3iq"]
 [ext_resource type="PackedScene" uid="uid://b4omf38i3lm37" path="res://scenes/mosca.tscn" id="3_1b3iq"]
 [ext_resource type="PackedScene" uid="uid://blh18oii8husf" path="res://scenes/cueio.tscn" id="4_k05ng"]
 [ext_resource type="PackedScene" uid="uid://34aovjujrsni" path="res://scenes/spawner.tscn" id="5_0c0ry"]
+[ext_resource type="Script" uid="uid://dubcrbr6od3x5" path="res://scenes/node.gd" id="5_4sjka"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sq8yp"]
 texture = ExtResource("1_sq8yp")
@@ -41,6 +42,7 @@ position = Vector2(857, 15)
 position = Vector2(134, 32)
 
 [node name="Node" type="Node" parent="."]
+script = ExtResource("5_4sjka")
 
 [node name="spawner" parent="Node" instance=ExtResource("5_0c0ry")]
-position = Vector2(304, 11)
+position = Vector2(188, -10)

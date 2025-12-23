@@ -6,4 +6,4 @@ func _ready() -> void:
 func _on_intervalo_timeout() -> void:
 	var novo_bicho = get_parent().inimigo.instantiate()
 	novo_bicho.global_position = global_position
-	
+	get_tree().root.add_child(novo_bicho)
