@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdnqlkkoe34of"]
+[gd_scene load_steps=4 format=3 uid="uid://byvavxm8bqtbr"]
 
-[ext_resource type="Script" path="res://scripts/projetil.gd" id="1_ri8ot"]
+[ext_resource type="Script" uid="uid://bn6k77upl4g52" path="res://scripts/projetil.gd" id="1_ri8ot"]
 [ext_resource type="Texture2D" uid="uid://cjne0aja4q8uv" path="res://icon.svg" id="2_ri8ot"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rty1r"]
