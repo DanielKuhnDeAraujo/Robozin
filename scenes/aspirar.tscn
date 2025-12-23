@@ -13,8 +13,8 @@ radius = 4.0
 script = ExtResource("1_onpi2")
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(37, 0)
-scale = Vector2(0.575, 0.216)
+position = Vector2(36.1, -1.1920929e-07)
+scale = Vector2(0.56093746, 0.203125)
 texture = ExtResource("1_aka5j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

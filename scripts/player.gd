@@ -8,13 +8,14 @@ extends CharacterBody2D
 @onready var invulnerabilidade: Timer = $invulnerabilidade
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var spawn_posit: Marker2D = $Spawn_posit
+@onready var spawn_posit_v: Marker2D = $Spawn_positV
 @onready var colisor: RayCast2D = $colisor_front
 @onready var main = get_tree().get_root().get_node("jogo")
 
 #variáveis
 var SPEED: float = 150.0
 
-const MAX_SPEED: float = 200
+var MAX_SPEED: float = 200
 const aceleracao: float = 15
 const friccao: float = 25
 const max_jump: float = -385.0
@@ -23,12 +24,12 @@ const cancela_pulo: float = 0.5
 @onready var projetil = preload("res://scenes/projetil.tscn")
 var is_jumping: bool = false
 var jump_buffer: bool = false
-var vida = 5
+var vida: int = 5
 var pulou: bool = false
 var timer_coiote: float = 0
 var tempo_total_coiote: float = 0.1
-var knock = "n"
-var invul = false
+var knock: String = "n"
+var invul: bool = false
 var coiote_ativo
 @export var direcao: int = -1
 var pode_sugar = true
@@ -39,9 +40,15 @@ var area_aspirador
 var eixo: float = 0  #determina o eixo em que o projétil vai se mover
 var direction: float = 1
 var spawn_projetil
-var ultima_olhou: float = 1#eu sei, é tosco, mas é necessário :(
+var ultima_olhou: float = 1 #eu sei, é tosco, mas é necessário :(
+var ammo: int = 3
+var aspirando: bool = false
 
 func _physics_process(delta: float) -> void:
+	
+	#remover depois:
+	if Input.is_action_just_pressed("recarga da munião (tirar depois)"):
+		ammo = 3
 	#obtem a posição do spawn de projétil (eu sei, tosco)
 	spawn_projetil = spawn_posit.global_position
 	#jump buffer
@@ -63,7 +70,7 @@ func _physics_process(delta: float) -> void:
 		pulou = false
 		timer_coiote = tempo_total_coiote
 		# pulo
-		if Input.is_action_just_pressed("pulo"):
+		if Input.is_action_just_pressed("pulo") and !aspirando:
 			pulo()
 			pulou = true
 	#inicia o jump buffer
@@ -112,24 +119,30 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("aspirar") and pode_sugar:
 		print(pode_sugar)
 		aspirar()
+		aspirando = true
+		MAX_SPEED *= 0.5
 		
 	if Input.is_action_just_released("aspirar"):
 		pode_sugar = true
 		contador = 0
+		aspirando = false
+		MAX_SPEED /= 0.5
+		print(MAX_SPEED)
 	
-	if Input.is_action_just_pressed("atirar"):
+	if Input.is_action_just_pressed("atirar") and ammo > 0:
 		atirar()
 		if eixo != 0:
 			velocity.y = 0
-			velocity.y += 350 * eixo 
+			velocity.y += (200 + (100 * ammo)) * eixo 
 		else:
 			timer_knock.start()
 			if ultima_olhou == 1:
 				#velocity.x = 0
-				velocity.x += 1000 * -ultima_olhou
+				knock = "tiroesquerda"
 			elif ultima_olhou == -1:
 				#velocity.x = 0
-				velocity.x += 1000 * -ultima_olhou
+				knock = "tirodireita"
+		ammo -= 1
 		#knock
 	if knock == "esquerda" :
 		velocity.x=-290
@@ -137,6 +150,10 @@ func _physics_process(delta: float) -> void:
 	if knock == "direita" :
 		velocity.x=290
 		velocity.y=0
+	if knock == "tirodireita":
+		velocity.x = 150 + (50* ammo)
+	if knock == "tiroesquerda":
+		velocity.x = -150 - (50* ammo)
 	move_and_slide()
 	
 	
@@ -161,7 +178,7 @@ func _on_coiote_timer_timeout() -> void:
 func dano(qtd: int,tipo: String) :
 	if not invul:
 		vida -= qtd
-		label.text =str(vida)
+		label.text =str(vida) + " " + str(ammo)
 		if vida <= 0 : 
 			label.text =str("Morreu!")
 			Engine.time_scale=0.5
@@ -196,6 +213,7 @@ func aspirar():
 	add_child(instance)
 	instance.global_position = spawn_posit.global_position
 	instance.scale.x = direcao
+	instance.eixo = eixo
 	area_aspirador = instance
 	instance.suguei.connect(inimigo_sugado)
 
@@ -203,6 +221,7 @@ func aspirar():
 func inimigo_sugado(inimigo):
 	qtd_sugados += 1 #tem q armazenar isso num array, dps algm ou eu msm boto
 	sugados = true
+	ammo += 1
 	print(inimigo.name)
 	print("inimigo sugado porra")
 
