@@ -132,8 +132,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("atirar") and ammo > 0:
 		atirar()
 		if eixo != 0:
+			is_jumping = false
 			velocity.y = 0
-			velocity.y += (200 + (100 * ammo)) * eixo 
+			velocity.y += (300 + (70 * ammo)) * eixo 
 		else:
 			timer_knock.start()
 			if ultima_olhou == 1:
@@ -213,7 +214,6 @@ func aspirar():
 	add_child(instance)
 	instance.global_position = spawn_posit.global_position
 	instance.scale.x = direcao
-	instance.eixo = eixo
 	area_aspirador = instance
 	instance.suguei.connect(inimigo_sugado)
 

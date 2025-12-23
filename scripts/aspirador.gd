@@ -7,9 +7,6 @@ var forcaY = 1
 var direcao = 1
 var alvo
 @onready var spawn_posit: Marker2D = $"../Spawn_posit"
-@onready var spawn_posit_cima: Marker2D = $"../Spawn_positCIMA"
-@onready var spawn_posit_baixo: Marker2D = $"../Spawn_positBAIXO"
-var eixo 
 var colisor
 var sugado #dps deixa isso como um array se achar melhor
 var qtd_sugados : int
@@ -22,7 +19,6 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	print("aqui o eixo", eixo)
 	colisor = get_parent().colisor
 	qtd_sugados = get_parent().qtd_sugados
 	if alvo and not overlaps_body(alvo):
@@ -30,15 +26,7 @@ func _physics_process(delta: float) -> void:
 		alvo = null
 	direcao = $"..".direcao
 	print(qtd_sugados)
-	if eixo != 0:
-		if eixo == 1:
-			global_position = spawn_posit_cima.global_position
-			rotation = -90
-		elif eixo == -1:
-			global_position = spawn_posit_baixo.global_position
-			rotation = 90
-	if eixo == 0:
-		global_position = spawn_posit.global_position
+	global_position = spawn_posit.global_position
 	if sign(spawn_posit.position.x) == -1:
 		scale.x = -1
 	else:
