@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://34aovjujrsni"]
-
-[node name="spawner" type="Marker2D"]
-
-[node name="intervalo" type="Timer" parent="."]
