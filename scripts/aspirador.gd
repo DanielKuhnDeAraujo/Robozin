@@ -58,14 +58,16 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 	
 
-func _on_body_entered(body):
+"""func _on_body_entered(body):
 	if body.is_in_group("inimigos"):
 		alvo = body
+		print("entrou")
+		print(alvo.name)
 		
 
 func _on_body_exited(body: Node2D) -> void:
 	alvo.call("interromper", true)
-	alvo = null
+	alvo = null"""
 	
 func _exit_tree() -> void:#caso vcs n saibam esse exit_tree é o útimo bglh q acontece antes de vc remover algo (cm queue_free)
 	if alvo:
