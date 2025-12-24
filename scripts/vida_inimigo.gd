@@ -1,10 +1,10 @@
 extends Node
-var vida : int = get_parent().vida
+@onready var pai = get_parent()
 func dano(qtd: int,tipo: String ) :
-	vida-=qtd
-	if vida <= 0 :
+	pai.vida-=qtd
+	if pai.vida <= 0 :
 		morrer()
 func morrer() : 
 	queue_free()
 func _ready() -> void:
-	print(vida)
+	print(pai.vida)
