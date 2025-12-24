@@ -7,6 +7,7 @@
 radius = 4.0
 
 [node name="Aspirar" type="Area2D"]
+collision_mask = 2147483649
 script = ExtResource("1_onpi2")
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -28,3 +29,6 @@ polygon = PackedVector2Array(-62.608696, -87.37864, -62.608696, 67.96116, 69.565
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_onpi2")
 debug_color = Color(0.61145085, 0.51008993, 0.48224527, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

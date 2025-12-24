@@ -41,7 +41,7 @@ var eixo: float = 0  #determina o eixo em que o projétil vai se mover
 var direction: float = 1
 var spawn_projetil
 var ultima_olhou: float = 1 #eu sei, é tosco, mas é necessário :(
-var ammo: int = 3
+var ammo: int = 0
 var aspirando: bool = false
 
 func _physics_process(delta: float) -> void:
@@ -117,7 +117,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = SPEED
 		
 	if Input.is_action_pressed("aspirar") and pode_sugar:
-		print(pode_sugar)
 		aspirar()
 		aspirando = true
 		MAX_SPEED *= 0.5
@@ -127,7 +126,6 @@ func _physics_process(delta: float) -> void:
 		contador = 0
 		aspirando = false
 		MAX_SPEED /= 0.5
-		print(MAX_SPEED)
 	
 	if Input.is_action_just_pressed("atirar") and ammo > 0:
 		atirar()
@@ -144,6 +142,8 @@ func _physics_process(delta: float) -> void:
 				#velocity.x = 0
 				knock = "tirodireita"
 		ammo -= 1
+		qtd_sugados-=1
+		print("Qtd sugados :",qtd_sugados)
 		#knock
 	if knock == "esquerda" :
 		velocity.x=-290
@@ -179,7 +179,7 @@ func _on_coiote_timer_timeout() -> void:
 func dano(qtd: int,tipo: String) :
 	if not invul:
 		vida -= qtd
-		label.text =str(vida) + " " + str(ammo)
+		label.text =str(vida) 
 		if vida <= 0 : 
 			label.text =str("Morreu!")
 			Engine.time_scale=0.5
@@ -227,8 +227,10 @@ func inimigo_sugado(inimigo):
 
 #função do tiro:
 func atirar():
+
 	var instancia = projetil.instantiate()
 	instancia.direction = ultima_olhou
 	instancia.eixo =  eixo
 	instancia.posicao  = spawn_projetil
 	main.add_child.call_deferred(instancia)
+	

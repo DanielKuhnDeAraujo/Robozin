@@ -10,7 +10,7 @@
 radius = 179.06982
 
 [node name="mosca" type="CharacterBody2D" groups=["inimigos"]]
-collision_layer = 2147483649
+collision_layer = 2147483648
 script = ExtResource("1_2ssye")
 
 [node name="Mosca" type="Sprite2D" parent="."]
