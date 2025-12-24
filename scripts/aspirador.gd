@@ -25,7 +25,6 @@ func _physics_process(delta: float) -> void:
 		alvo.call("interromper", true)
 		alvo = null
 	direcao = $"..".direcao
-	print(qtd_sugados)
 	global_position = spawn_posit.global_position
 	if sign(spawn_posit.position.x) == -1:
 		scale.x = -1
@@ -38,7 +37,9 @@ func _physics_process(delta: float) -> void:
 				emit_signal("suguei", sugado)
 				colisor.get_collider().queue_free()
 				
-		await get_tree().physics_frame
+				
+
+		#await get_tree().physics_frame
 		for body in get_overlapping_bodies():
 			if body.is_in_group("inimigos"):
 				alvo = body
