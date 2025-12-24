@@ -179,7 +179,7 @@ func _on_coiote_timer_timeout() -> void:
 func dano(qtd: int,tipo: String) :
 	if not invul:
 		vida -= qtd
-		label.text =str(vida) + " " + str(ammo)
+		label.text =str(vida) 
 		if vida <= 0 : 
 			label.text =str("Morreu!")
 			Engine.time_scale=0.5
