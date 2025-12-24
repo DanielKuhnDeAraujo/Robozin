@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4omf38i3lm37"]
+[gd_scene load_steps=7 format=3 uid="uid://b4omf38i3lm37"]
 
 [ext_resource type="Script" uid="uid://oj8tft6tl0m8" path="res://scripts/mosca.gd" id="1_2ssye"]
 [ext_resource type="Texture2D" uid="uid://du6eanikw3nv3" path="res://assets/mosca.png" id="2_2ssye"]
 [ext_resource type="PackedScene" uid="uid://c0ercwv2o6t8e" path="res://scenes/kill.tscn" id="2_bfrgy"]
+[ext_resource type="PackedScene" uid="uid://cp7nugqtq00au" path="res://scenes/vida_inimigo.tscn" id="4_kwhvw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kwhvw"]
 
@@ -38,6 +39,8 @@ debug_color = Color(0.92302436, 0, 0.1419878, 0.41960785)
 
 [node name="Move_random" type="Timer" parent="."]
 autostart = true
+
+[node name="VidaInimigo" parent="." instance=ExtResource("4_kwhvw")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
