@@ -1,6 +1,7 @@
 extends CharacterBody2D
 var dano =1;
 var vida =1;
+@onready var vida_inimigo: Node = $VidaInimigo
 var monitorar : bool = false
 var bode
 var speed : int = 75

@@ -176,7 +176,7 @@ func _on_timer_jump_buffer_timeout() -> void:
 func _on_coiote_timer_timeout() -> void:
 	coiote_ativo = false # Replace with function body.
 
-func dano(qtd: int,tipo: String) :
+func dano(qtd: int,tipo: String ) :
 	if not invul:
 		vida -= qtd
 		label.text =str(vida) 
