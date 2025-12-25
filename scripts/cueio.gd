@@ -1,8 +1,10 @@
 extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var raycast: RayCast2D = $raycast
+@onready var vida_inimigo: Node = $VidaInimigo
 var seguindo  = "f"
 var dano = 1
+var vida =1
 var gravidade =960
 var contador =0  
 var speed =100

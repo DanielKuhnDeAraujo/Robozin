@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://blh18oii8husf"]
+[gd_scene load_steps=9 format=3 uid="uid://blh18oii8husf"]
 
 [ext_resource type="Texture2D" uid="uid://5tvaej4dp8ty" path="res://assets/cueio.png" id="1_cwvvp"]
 [ext_resource type="Script" uid="uid://dkc4lj7jldu5r" path="res://scripts/cueio.gd" id="1_j0o8x"]
 [ext_resource type="PackedScene" uid="uid://c0ercwv2o6t8e" path="res://scenes/kill.tscn" id="2_3cpjk"]
+[ext_resource type="PackedScene" uid="uid://cp7nugqtq00au" path="res://scenes/vida_inimigo.tscn" id="4_y631f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3cpjk"]
 atlas = ExtResource("1_cwvvp")
@@ -55,5 +56,7 @@ debug_color = Color(0, 0.5132932, 0.33815837, 0.41960785)
 
 [node name="pulo" type="Timer" parent="."]
 autostart = true
+
+[node name="VidaInimigo" parent="." instance=ExtResource("4_y631f")]
 
 [connection signal="timeout" from="pulo" to="." method="_on_pulo_timeout"]

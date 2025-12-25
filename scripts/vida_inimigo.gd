@@ -5,6 +5,4 @@ func dano(qtd: int,tipo: String ) :
 	if pai.vida <= 0 :
 		morrer()
 func morrer() : 
-	queue_free()
-func _ready() -> void:
-	print(pai.vida)
+	get_parent().queue_free()
