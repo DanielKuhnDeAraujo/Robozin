@@ -8,6 +8,7 @@ var vida =1
 var gravidade =960
 var contador =0  
 var speed =100
+var spawner
 func _ready() -> void:
 	velocity.x -=50
 func _physics_process(delta: float) -> void:
@@ -32,7 +33,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_pulo_timeout() -> void:
-		velocity.y-=300
+		velocity.y-=200
 		if  seguindo == 'f':
 			velocity.x=speed *(randi() % 2)
 			if velocity.x== 0 :
