@@ -32,8 +32,9 @@ layout_mode = 2
 text = "hp :"
 
 [node name="barra_vida" type="ProgressBar" parent="hud_root/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
+show_percentage = false
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="hud_root/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -44,7 +45,6 @@ layout_mode = 2
 text = "ammo :"
 
 [node name="barra_municao" type="ProgressBar" parent="hud_root/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(150, 20)
 layout_mode = 2
-
-[connection signal="atualizar" from="hud_root" to="hud_root" method="_on_atualizar"]
+show_percentage = false

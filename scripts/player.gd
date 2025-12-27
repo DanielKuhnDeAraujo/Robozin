@@ -9,7 +9,6 @@ extends CharacterBody2D
 @onready var spawn_posit: Marker2D = $Spawn_posit
 @onready var colisor: RayCast2D = $colisor_front
 @onready var main = get_tree().get_root().get_node("jogo")
-@onready var Hud = $"../Hud/hudroot"
 
 #variáveis
 var SPEED: float = 150.0
@@ -21,6 +20,9 @@ const max_jump: float = -385.0
 const cancela_pulo: float = 0.5
 @onready var sugador = preload("res://scenes/aspirar.tscn")
 @onready var projetil = preload("res://scenes/projetil.tscn")
+@onready var canvas_layer = preload("res://scenes/HUD.tscn")
+var HUD
+
 var is_jumping: bool = false
 var jump_buffer: bool = false
 var vida: int = 5
@@ -43,6 +45,14 @@ var ultima_olhou: float = 1 #eu sei, é tosco, mas é necessário :(
 var ammo: int = 3
 var aspirando: bool = false
 
+func _ready() -> void:
+	var canvas = canvas_layer.instantiate()
+	HUD = canvas.get_node("hud_root")
+	main.add_child.call_deferred(canvas)
+	HUD.max_life = vida
+	HUD.curent_life = vida
+	HUD.max_ammo = ammo
+	HUD.curent_ammo = ammo
 func _physics_process(delta: float) -> void:
 	
 	#remover depois:
@@ -237,6 +247,7 @@ func atirar():
 	main.add_child.call_deferred(instancia)
 
 func atualizar():
-	atualizar_hud.emit()
-
-signal atualizar_hud(vida: int, ammo: int)
+	HUD.atualizar = true
+	HUD.curent_ammo = ammo
+	HUD.curent_life = vida
+	HUD.curent_ammo = ammo
