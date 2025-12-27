@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cfocn7rvh5kjq" path="res://scenes/player.tscn" id="2_1b3iq"]
 [ext_resource type="PackedScene" uid="uid://b4omf38i3lm37" path="res://scenes/mosca.tscn" id="3_1b3iq"]
 [ext_resource type="PackedScene" uid="uid://blh18oii8husf" path="res://scenes/cueio.tscn" id="4_k05ng"]
-[ext_resource type="PackedScene" path="res://scenes/cueio.tscn" id="4_k05ng"]
 [ext_resource type="PackedScene" uid="uid://g886phmj51n5" path="res://scenes/HUD.tscn" id="5_0c0ry"]
 [ext_resource type="PackedScene" uid="uid://34aovjujrsni" path="res://scenes/spawner.tscn" id="5_0c0ry"]
 [ext_resource type="Script" uid="uid://dubcrbr6od3x5" path="res://scenes/node.gd" id="5_4sjka"]
