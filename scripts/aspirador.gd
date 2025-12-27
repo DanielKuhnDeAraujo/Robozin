@@ -35,7 +35,8 @@ func _physics_process(delta: float) -> void:
 			if colisor.get_collider().is_in_group("inimigos") and qtd_sugados < 3:#esse 3 é o limite
 				sugado = colisor.get_collider()
 				emit_signal("suguei", sugado)
-				colisor.get_collider().queue_free()
+				colisor.get_collider().vida_inimigo.morrer()
+				#caio tá podendo te matar já?
 				
 				
 

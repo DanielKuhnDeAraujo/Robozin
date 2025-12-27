@@ -10,6 +10,7 @@ var random: int
 var dir_random_list  = ["-y","y","x","-x"]
 var dir_random = "y"
 var dir_random_d = "x"
+var spawner
 @onready var move_random: Timer = $Move_random
 
 func _physics_process(delta: float) -> void:
