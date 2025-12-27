@@ -192,7 +192,6 @@ func dano(qtd: int,tipo: String ) :
 		vida -= qtd
 		atualizar()
 		#label.text =str(vida) + " " + str(ammo)
-		label.text =str(vida) 
 		if vida <= 0 : 
 			#label.text =str("Morreu!")
 			Engine.time_scale=0.5

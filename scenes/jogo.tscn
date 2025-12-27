@@ -44,10 +44,8 @@ position = Vector2(857, 15)
 [node name="Cueio" parent="." instance=ExtResource("4_k05ng")]
 position = Vector2(134, 32)
 
-[node name="Hud" parent="." instance=ExtResource("5_0c0ry")]
-
 [node name="Node" type="Node" parent="."]
 script = ExtResource("5_4sjka")
 
-[node name="spawner" parent="." instance=ExtResource("5_0c0ry")]
+[node name="spawner" parent="Node" instance=ExtResource("5_0c0ry")]
 position = Vector2(193, 2)
