@@ -1,14 +1,12 @@
 extends CharacterBody2D
 @onready var timer_jump_buffer: Timer = $Timer_jump_buffer
 @onready var timer_pulo_variável: Timer = $"Timer_pulo_variável"
-@onready var label: Label = $Label
 @onready var colision: CollisionShape2D = $colision
 @onready var death_timer: Timer = $Death_timer
 @onready var timer_knock: Timer = $Timer_Knock
 @onready var invulnerabilidade: Timer = $invulnerabilidade
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var spawn_posit: Marker2D = $Spawn_posit
-@onready var spawn_posit_v: Marker2D = $Spawn_positV
 @onready var colisor: RayCast2D = $colisor_front
 @onready var main = get_tree().get_root().get_node("jogo")
 
@@ -22,6 +20,9 @@ const max_jump: float = -385.0
 const cancela_pulo: float = 0.5
 @onready var sugador = preload("res://scenes/aspirar.tscn")
 @onready var projetil = preload("res://scenes/projetil.tscn")
+@onready var canvas_layer = preload("res://scenes/HUD.tscn")
+var HUD
+
 var is_jumping: bool = false
 var jump_buffer: bool = false
 var vida: int = 5
@@ -44,11 +45,20 @@ var ultima_olhou: float = 1 #eu sei, é tosco, mas é necessário :(
 var ammo: int = 0
 var aspirando: bool = false
 
+func _ready() -> void:
+	var canvas = canvas_layer.instantiate()
+	HUD = canvas.get_node("hud_root")
+	main.add_child.call_deferred(canvas)
+	HUD.max_life = vida
+	HUD.curent_life = vida
+	HUD.max_ammo = ammo
+	HUD.curent_ammo = ammo
 func _physics_process(delta: float) -> void:
 	
 	#remover depois:
 	if Input.is_action_just_pressed("recarga da munião (tirar depois)"):
 		ammo = 3
+		atualizar()
 	#obtem a posição do spawn de projétil (eu sei, tosco)
 	spawn_projetil = spawn_posit.global_position
 	#jump buffer
@@ -142,6 +152,7 @@ func _physics_process(delta: float) -> void:
 				#velocity.x = 0
 				knock = "tirodireita"
 		ammo -= 1
+		atualizar()
 		qtd_sugados-=1
 		print("Qtd sugados :",qtd_sugados)
 		#knock
@@ -179,9 +190,11 @@ func _on_coiote_timer_timeout() -> void:
 func dano(qtd: int,tipo: String ) :
 	if not invul:
 		vida -= qtd
+		atualizar()
+		#label.text =str(vida) + " " + str(ammo)
 		label.text =str(vida) 
 		if vida <= 0 : 
-			label.text =str("Morreu!")
+			#label.text =str("Morreu!")
 			Engine.time_scale=0.5
 			colision.queue_free()
 			death_timer.start()
@@ -222,6 +235,7 @@ func inimigo_sugado(inimigo):
 	qtd_sugados += 1 #tem q armazenar isso num array, dps algm ou eu msm boto
 	sugados = true
 	ammo += 1
+	atualizar()
 	print(inimigo.name)
 	print("inimigo sugado porra")
 
@@ -233,4 +247,10 @@ func atirar():
 	instancia.eixo =  eixo
 	instancia.posicao  = spawn_projetil
 	main.add_child.call_deferred(instancia)
+
+func atualizar():
+	HUD.atualizar = true
+	HUD.curent_ammo = ammo
+	HUD.curent_life = vida
+	HUD.curent_ammo = ammo
 	
