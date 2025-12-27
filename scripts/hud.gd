@@ -11,7 +11,7 @@ var atualizar: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	barra_vida.max_value = curent_life
-	barra_municao.max_value = curent_ammo
+	barra_municao.max_value = 3
 	barra_vida.value = curent_life
 	barra_municao.value = curent_ammo
 

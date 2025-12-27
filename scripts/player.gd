@@ -54,11 +54,7 @@ func _ready() -> void:
 	HUD.max_ammo = ammo
 	HUD.curent_ammo = ammo
 func _physics_process(delta: float) -> void:
-	
 	#remover depois:
-	if Input.is_action_just_pressed("recarga da munião (tirar depois)"):
-		ammo = 3
-		atualizar()
 	#obtem a posição do spawn de projétil (eu sei, tosco)
 	spawn_projetil = spawn_posit.global_position
 	#jump buffer
@@ -251,5 +247,3 @@ func atualizar():
 	HUD.atualizar = true
 	HUD.curent_ammo = ammo
 	HUD.curent_life = vida
-	HUD.curent_ammo = ammo
-	
