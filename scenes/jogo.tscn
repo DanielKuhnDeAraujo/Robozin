@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://b4omf38i3lm37" path="res://scenes/mosca.tscn" id="3_1b3iq"]
 [ext_resource type="PackedScene" path="res://scenes/cueio.tscn" id="4_k05ng"]
 [ext_resource type="PackedScene" uid="uid://g886phmj51n5" path="res://scenes/HUD.tscn" id="5_0c0ry"]
+[ext_resource type="PackedScene" uid="uid://34aovjujrsni" path="res://scenes/spawner.tscn" id="5_0c0ry"]
+[ext_resource type="Script" uid="uid://dubcrbr6od3x5" path="res://scenes/node.gd" id="5_4sjka"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sq8yp"]
 texture = ExtResource("1_sq8yp")
@@ -29,11 +31,18 @@ tile_set = SubResource("TileSet_1b3iq")
 unique_name_in_owner = true
 position = Vector2(27, 16)
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2.5, 2.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
 [node name="mosca" parent="." instance=ExtResource("3_1b3iq")]
 position = Vector2(570, -192)
+collision_layer = 2147483648
 
 [node name="mosca2" parent="." instance=ExtResource("3_1b3iq")]
 position = Vector2(857, 15)
+collision_layer = 2147483648
 
 [node name="Cueio" parent="." instance=ExtResource("4_k05ng")]
 position = Vector2(134, 32)
@@ -41,3 +50,8 @@ position = Vector2(134, 32)
 [node name="Hud" parent="." instance=ExtResource("5_0c0ry")]
 
 [connection signal="atualizar_hud" from="Player" to="." method="_on_player_atualizar_hud"]
+[node name="Node" type="Node" parent="."]
+script = ExtResource("5_4sjka")
+
+[node name="spawner" parent="Node" instance=ExtResource("5_0c0ry")]
+position = Vector2(188, -10)

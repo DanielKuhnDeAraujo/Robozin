@@ -1,10 +1,13 @@
 extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var raycast: RayCast2D = $raycast
+@onready var vida_inimigo: Node = $VidaInimigo
 var seguindo  = "f"
 var dano = 1
-var gravidade =480
+var vida =1
+var gravidade =960
 var contador =0  
+var speed =100
 func _ready() -> void:
 	velocity.x -=50
 func _physics_process(delta: float) -> void:
@@ -29,15 +32,15 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_pulo_timeout() -> void:
-		velocity.y-=150
+		velocity.y-=300
 		if  seguindo == 'f':
-			velocity.x=50 *(randi() % 2)
+			velocity.x=speed *(randi() % 2)
 			if velocity.x== 0 :
-				velocity.x=-50
+				velocity.x=-speed
 		if seguindo == "direita" :
-			velocity.x = 50
+			velocity.x = speed
 		if seguindo == "esquerda" : 
-			velocity.x = -50
+			velocity.x = -speed
 		if velocity.x >0 :
 			sprite.flip_h= true
 			raycast.target_position=Vector2(70,0)
