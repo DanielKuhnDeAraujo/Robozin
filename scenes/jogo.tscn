@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://6ab4csixupru"]
+[gd_scene load_steps=10 format=4 uid="uid://6ab4csixupru"]
 
 [ext_resource type="Script" uid="uid://yxosn47jyabl" path="res://scripts/jogo.gd" id="1_4sjka"]
 [ext_resource type="Texture2D" uid="uid://cru8p50xi80xq" path="res://assets/New Piskel (1).png" id="1_sq8yp"]
 [ext_resource type="PackedScene" uid="uid://cfocn7rvh5kjq" path="res://scenes/player.tscn" id="2_1b3iq"]
 [ext_resource type="PackedScene" uid="uid://b4omf38i3lm37" path="res://scenes/mosca.tscn" id="3_1b3iq"]
 [ext_resource type="PackedScene" uid="uid://blh18oii8husf" path="res://scenes/cueio.tscn" id="4_k05ng"]
-[ext_resource type="PackedScene" uid="uid://g886phmj51n5" path="res://scenes/HUD.tscn" id="5_0c0ry"]
 [ext_resource type="PackedScene" uid="uid://34aovjujrsni" path="res://scenes/spawner.tscn" id="5_0c0ry"]
 [ext_resource type="Script" uid="uid://dubcrbr6od3x5" path="res://scenes/node.gd" id="5_4sjka"]
 
@@ -31,7 +30,7 @@ tile_set = SubResource("TileSet_1b3iq")
 unique_name_in_owner = true
 position = Vector2(27, 16)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D2" type="Camera2D" parent="Player"]
 zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
@@ -47,9 +46,8 @@ position = Vector2(134, 32)
 
 [node name="Hud" parent="." instance=ExtResource("5_0c0ry")]
 
-[connection signal="atualizar_hud" from="Player" to="." method="_on_player_atualizar_hud"]
 [node name="Node" type="Node" parent="."]
 script = ExtResource("5_4sjka")
 
-[node name="spawner" parent="Node" instance=ExtResource("5_0c0ry")]
-position = Vector2(188, -10)
+[node name="spawner" parent="." instance=ExtResource("5_0c0ry")]
+position = Vector2(193, 2)
