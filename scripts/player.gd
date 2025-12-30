@@ -122,16 +122,17 @@ func _physics_process(delta: float) -> void:
 		SPEED = move_toward(SPEED, 0, friccao)
 		velocity.x = SPEED
 		
-	if Input.is_action_pressed("aspirar") and pode_sugar:
+	if Input.is_action_pressed("aspirar") and pode_sugar and ammo != 3:
 		aspirar()
 		aspirando = true
-		MAX_SPEED *= 0.5
+		MAX_SPEED = 100
 		
 	if Input.is_action_just_released("aspirar"):
 		pode_sugar = true
 		contador = 0
 		aspirando = false
-		MAX_SPEED /= 0.5
+		if MAX_SPEED < 200:
+			MAX_SPEED = move_toward(MAX_SPEED, 200, 100)
 	
 	if Input.is_action_just_pressed("atirar") and ammo > 0:
 		atirar()
