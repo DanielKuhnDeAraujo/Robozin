@@ -1,0 +1,157 @@
+[gd_scene load_steps=10 format=3 uid="uid://bu012qqqe2kdl"]
+
+[ext_resource type="Script" uid="uid://bw5wesjecqhfe" path="res://scripts/tela_inicial.gd" id="1_8p7l1"]
+[ext_resource type="Texture2D" uid="uid://cj7vi1vrp41st" path="res://assets/tela_temporaria.png" id="1_w1dbf"]
+[ext_resource type="FontFile" uid="uid://d21e3ipl1ouq" path="res://assets/PixelOperator8-Bold.ttf" id="2_8p7l1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h3eqp"]
+texture = ExtResource("1_w1dbf")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kadd"]
+bg_color = Color(0.00020633652, 0.091048576, 0.38462755, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(7.2196127e-07, 0.34925458, 0.42898872, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w1dbf"]
+bg_color = Color(0.08390986, 0.35250783, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(7.2196127e-07, 0.34925458, 0.42898872, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8p7l1"]
+bg_color = Color(5.2859596e-05, 0.029883463, 0.19856256, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(7.2196127e-07, 0.34925458, 0.42898872, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w1dbf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gretf"]
+bg_color = Color(0.42576784, 0.57886285, 0.9756834, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="TelaInicial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_8p7l1")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_h3eqp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.75
+offset_top = 62.0
+offset_right = 165.75
+offset_bottom = 201.75
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="iniciar" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.046431273, 0.085193895, 0.36028835, 1)
+theme_override_fonts/font = ExtResource("2_8p7l1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0kadd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_w1dbf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8p7l1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w1dbf")
+text = "INICIAR"
+
+[node name="opcoes" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.046431273, 0.085193895, 0.36028835, 1)
+theme_override_fonts/font = ExtResource("2_8p7l1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0kadd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_w1dbf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8p7l1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w1dbf")
+text = "OPCOES"
+
+[node name="sair" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.046431273, 0.085193895, 0.36028835, 1)
+theme_override_fonts/font = ExtResource("2_8p7l1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0kadd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_w1dbf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8p7l1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w1dbf")
+text = "SAIR"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -238.0
+offset_right = 204.0
+offset_bottom = -162.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.00069389754, 0.00069389766, 0.0006938976, 1)
+theme_override_fonts/font = ExtResource("2_8p7l1")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_gretf")
+text = "ROBOZIN ASPIRADOR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/iniciar" to="." method="_on_iniciar_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/opcoes" to="." method="_on_opcoes_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/sair" to="." method="_on_sair_pressed"]
