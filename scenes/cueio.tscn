@@ -27,7 +27,7 @@ height = 20.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0o8x"]
 size = Vector2(25, 12)
 
-[node name="Cueio" type="CharacterBody2D"]
+[node name="Cueio" type="CharacterBody2D" groups=["inimigos"]]
 collision_layer = 2147483648
 script = ExtResource("1_j0o8x")
 

@@ -2,6 +2,7 @@ extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var raycast: RayCast2D = $raycast
 @onready var vida_inimigo: Node = $VidaInimigo
+var pode_mover =true
 var seguindo  = "f"
 var dano = 1
 var vida =1
@@ -29,7 +30,8 @@ func _physics_process(delta: float) -> void:
 			seguindo="direita"
 		else :
 			seguindo = "esquerda"
-	move_and_slide()
+	if pode_mover :
+		move_and_slide()
 
 
 func _on_pulo_timeout() -> void:
@@ -49,3 +51,7 @@ func _on_pulo_timeout() -> void:
 			sprite.flip_h= false
 			raycast.target_position=Vector2(-70,0)
 		
+
+func interromper(estado: bool) -> void:
+	pode_mover = estado
+	
