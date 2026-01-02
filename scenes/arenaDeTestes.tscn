@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cru8p50xi80xq" path="res://assets/New Piskel (1).png" id="1_0065p"]
 [ext_resource type="PackedScene" uid="uid://cfocn7rvh5kjq" path="res://scenes/player.tscn" id="2_5hfcb"]
-[ext_resource type="PackedScene" uid="uid://b4omf38i3lm37" path="res://scenes/mosca.tscn" id="3_5hfcb"]
+[ext_resource type="PackedScene" uid="uid://blmccd0v1oexo" path="res://scenes/tiro.tscn" id="3_5hfcb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r71d3"]
 texture = ExtResource("1_0065p")
@@ -24,8 +24,8 @@ tile_set = SubResource("TileSet_0c0ry")
 [node name="Player" parent="." instance=ExtResource("2_5hfcb")]
 position = Vector2(27, 16)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D2" type="Camera2D" parent="Player"]
 zoom = Vector2(3, 3)
 
-[node name="Mosca" parent="." instance=ExtResource("3_5hfcb")]
-position = Vector2(131, -7)
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_5hfcb")]
+position = Vector2(181, -24)
