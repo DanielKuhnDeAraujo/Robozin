@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boi6ig4k5cxob"
-path="res://.godot/imported/tiroini.png-3ebc8348198b53e5fa9175237f8ab64e.ctex"
+uid="uid://r0ssq5if2baa"
+path="res://.godot/imported/mofo.png-8ccd0a9ca7850476d65cf519c238909b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiroini.png"
-dest_files=["res://.godot/imported/tiroini.png-3ebc8348198b53e5fa9175237f8ab64e.ctex"]
+source_file="res://assets/mofo.png"
+dest_files=["res://.godot/imported/mofo.png-8ccd0a9ca7850476d65cf519c238909b.ctex"]
 
 [params]
 

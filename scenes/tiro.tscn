@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://blmccd0v1oexo"]
+[gd_scene load_steps=7 format=3 uid="uid://blmccd0v1oexo"]
 
 [ext_resource type="Script" uid="uid://daga8cin1chnn" path="res://scripts/tiro.gd" id="1_66fgb"]
-[ext_resource type="Texture2D" uid="uid://csk1xdumkravo" path="res://assets/tiroini.png" id="1_vpuae"]
+[ext_resource type="Texture2D" uid="uid://boi6ig4k5cxob" path="res://assets/tiroini.png" id="1_vpuae"]
 [ext_resource type="PackedScene" uid="uid://c0ercwv2o6t8e" path="res://scenes/kill.tscn" id="2_66fgb"]
+[ext_resource type="PackedScene" uid="uid://cp7nugqtq00au" path="res://scenes/vida_inimigo.tscn" id="4_d5gu1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d5gu1"]
 animations = [{
@@ -18,7 +19,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66fgb"]
 size = Vector2(19, 9)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["inimigos"]]
 collision_layer = 2147483648
 script = ExtResource("1_66fgb")
 
@@ -35,5 +36,7 @@ shape = SubResource("RectangleShape2D_66fgb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_66fgb")
+
+[node name="VidaInimigo" parent="." instance=ExtResource("4_d5gu1")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

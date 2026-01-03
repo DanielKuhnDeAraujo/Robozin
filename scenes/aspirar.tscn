@@ -26,7 +26,6 @@ scale = Vector2(0.575, 0.206)
 polygon = PackedVector2Array(-62.608696, -87.37864, -62.608696, 67.96116, 69.56522, 67.96116, 69.56522, -199.02911)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_onpi2")
 debug_color = Color(0.61145085, 0.51008993, 0.48224527, 0.41960785)
 
