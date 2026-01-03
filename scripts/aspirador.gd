@@ -64,11 +64,11 @@ func _physics_process(delta: float) -> void:
 		alvo = body
 		print("entrou")
 		print(alvo.name)
-		
+		"""
 
 func _on_body_exited(body: Node2D) -> void:
-	alvo.call("interromper", true)
-	alvo = null"""
+	if body.has_method("interromper") : 
+		body.call("interromper", true)
 	
 func _exit_tree() -> void:#caso vcs n saibam esse exit_tree é o útimo bglh q acontece antes de vc remover algo (cm queue_free)
 	if alvo:

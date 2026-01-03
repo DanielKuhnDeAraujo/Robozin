@@ -4,6 +4,7 @@ func dano(qtd: int,tipo: String ) :
 	pai.vida-=qtd
 	if pai.vida <= 0 :
 		morrer()
+	print(pai.vida)
 func morrer() : 
 	if pai.spawner!= null :
 		get_tree().root.get_child(0).get_node(NodePath(pai.spawner)).limite+=1

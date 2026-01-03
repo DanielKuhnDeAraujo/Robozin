@@ -1,5 +1,6 @@
 extends CharacterBody2D
 @onready var timer: Timer = $Timer
+@onready var area_2d: Area2D = $Area2D
 
 var posicao
 var velocidade: float = 1000
@@ -21,6 +22,9 @@ func _physics_process(delta: float) -> void:
 	if collision !=null :
 		queue_free()
 		print("sumiu")
+	for body in area_2d.get_overlapping_bodies():
+		pass
+		
 
 func _on_timer_timeout() -> void:
 	pass
