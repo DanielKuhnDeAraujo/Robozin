@@ -17,7 +17,6 @@ func _ready() -> void:
 	if abs(difx) < 100 : 
 		subir=190
 	velocity.y=-subir
-	print(velocity.y)
 	#tempo de subida 
 	var t1: float = subir / gravidade
 	#altura maxima

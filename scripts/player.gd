@@ -151,7 +151,6 @@ func _physics_process(delta: float) -> void:
 		ammo -= 1
 		atualizar()
 		qtd_sugados-=1
-		print("Qtd sugados :",qtd_sugados)
 		#knock
 	if knock == "esquerda" :
 		velocity.x=-290
@@ -232,8 +231,6 @@ func inimigo_sugado(inimigo):
 	sugados = true
 	ammo += 1
 	atualizar()
-	print(inimigo.name)
-	print("inimigo sugado porra")
 
 #função do tiro:
 func atirar():
