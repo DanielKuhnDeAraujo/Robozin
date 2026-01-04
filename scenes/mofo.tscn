@@ -23,6 +23,7 @@ size = Vector2(22.5, 22)
 size = Vector2(11.5, 11)
 
 [node name="StaticBody2D" type="StaticBody2D"]
+collision_layer = 2147483648
 script = ExtResource("1_hqu8q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

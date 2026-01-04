@@ -1,6 +1,6 @@
 extends StaticBody2D
 #Necessário pra vida
-var vida = 2
+var vida = 5
 @onready var vida_inimigo: Node = $VidaInimigo
 var spawner
 #pra dar dano quando enconstar nele

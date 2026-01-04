@@ -21,9 +21,6 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity*delta)
 	if collision !=null :
 		queue_free()
-		print("sumiu")
-	for body in area_2d.get_overlapping_bodies():
-		pass
 		
 
 func _on_timer_timeout() -> void:
