@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfocn7rvh5kjq"]
+[gd_scene load_steps=5 format=3 uid="uid://cfocn7rvh5kjq"]
 
 [ext_resource type="Texture2D" uid="uid://bc26ruaqc8hhq" path="res://assets/temporário.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://7ehx3dxa468b" path="res://scripts/player.gd" id="1_g2els"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(14, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(1, 26)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -49,6 +52,15 @@ position = Vector2(0, 16)
 modulate = Color(0, 0, 0, 1)
 target_position = Vector2(9, 0)
 collision_mask = 2147483649
+
+[node name="colisor_frent" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colisor_frent"]
+position = Vector2(7, 3)
+shape = SubResource("RectangleShape2D_g2els")
+debug_color = Color(0.4428593, 0.46196955, 0.97841316, 0.41960785)
 
 [connection signal="timeout" from="Timer_pulo_variável" to="." method="_on_timer_pulo_variável_timeout"]
 [connection signal="timeout" from="Timer_jump_buffer" to="." method="_on_timer_jump_buffer_timeout"]

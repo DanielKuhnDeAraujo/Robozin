@@ -34,5 +34,4 @@ func _on_body_exited(_body: Node2D) -> void:
 #sistema provisório, trocar quando precisar (assim q der)
 func causar_dano():
 	if get_parent().has_method("interromper"):
-		if get_parent().pode_mover:
-			atacar = get_parent().pode_mover
+		atacar = get_parent().pode_mover

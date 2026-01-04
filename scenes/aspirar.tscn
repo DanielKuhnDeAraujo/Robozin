@@ -23,7 +23,7 @@ texture = ExtResource("1_aka5j")
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(36, -1.009742e-28)
 scale = Vector2(0.575, 0.206)
-polygon = PackedVector2Array(-62.608696, -87.37864, -62.608696, 67.96116, 69.56522, 67.96116, 69.56522, -199.02911)
+polygon = PackedVector2Array(-62.608696, -72.81553, -62.608696, 67.96116, 69.56522, 67.96116, 69.56522, -199.02911)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_onpi2")

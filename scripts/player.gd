@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var invulnerabilidade: Timer = $invulnerabilidade
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var spawn_posit: Marker2D = $Spawn_posit
-@onready var colisor: RayCast2D = $colisor_front
+@onready var colisor: Area2D = $colisor_frent
 @onready var main = get_tree().get_root().get_node("jogo")
 
 #variáveis
@@ -32,7 +32,7 @@ var tempo_total_coiote: float = 0.1
 var knock: String = "n"
 var invul: bool = false
 var coiote_ativo
-@export var direcao: int = -1
+@export var direcao: int = 1
 var pode_sugar = true
 var contador = 0
 var sugados
