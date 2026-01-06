@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://q83rvnsyouat"]
+
+[ext_resource type="Script" uid="uid://06syr0ke854v" path="res://scripts/menu_de_pausa.gd" id="1_r8yp4"]
+[ext_resource type="FontFile" uid="uid://d21e3ipl1ouq" path="res://assets/PixelOperator8-Bold.ttf" id="2_m0klm"]
+
+[node name="Control" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_r8yp4")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.5
+offset_top = -158.0
+offset_right = 159.5
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+
+[node name="retornar" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m0klm")
+text = "RETORNAR"
+
+[node name="configs" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m0klm")
+text = "CONFIGS"
+
+[node name="sair" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m0klm")
+text = "SAIR"
+
+[connection signal="ativar" from="." to="." method="_on_ativar"]
+[connection signal="atualizar" from="." to="." method="_on_atualizar"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/retornar" to="." method="_on_retornar_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/configs" to="." method="_on_configs_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/sair" to="." method="_on_sair_pressed"]

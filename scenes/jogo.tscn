@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=4 uid="uid://6ab4csixupru"]
+[gd_scene load_steps=12 format=4 uid="uid://dohdhobm2hnpc"]
 
-[ext_resource type="Script" uid="uid://yxosn47jyabl" path="res://scripts/jogo.gd" id="1_4sjka"]
+[ext_resource type="Script" path="res://scripts/jogo.gd" id="1_4sjka"]
 [ext_resource type="Texture2D" uid="uid://cru8p50xi80xq" path="res://assets/New Piskel (1).png" id="1_sq8yp"]
 [ext_resource type="PackedScene" uid="uid://cfocn7rvh5kjq" path="res://scenes/player.tscn" id="2_1b3iq"]
 [ext_resource type="PackedScene" uid="uid://b4omf38i3lm37" path="res://scenes/mosca.tscn" id="3_1b3iq"]
 [ext_resource type="PackedScene" uid="uid://blh18oii8husf" path="res://scenes/cueio.tscn" id="4_k05ng"]
 [ext_resource type="PackedScene" uid="uid://34aovjujrsni" path="res://scenes/spawner.tscn" id="5_0c0ry"]
 [ext_resource type="Script" uid="uid://dubcrbr6od3x5" path="res://scenes/node.gd" id="5_4sjka"]
-[ext_resource type="PackedScene" uid="uid://c6c6rejqa20wd" path="res://scenes/mofo.tscn" id="8_8i8hp"]
+[ext_resource type="PackedScene" path="res://scenes/mofo.tscn" id="8_8i8hp"]
+[ext_resource type="PackedScene" uid="uid://q83rvnsyouat" path="res://scenes/pause.tscn" id="9_gsaar"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sq8yp"]
 texture = ExtResource("1_sq8yp")
@@ -53,3 +54,5 @@ position = Vector2(193, 2)
 
 [node name="StaticBody2D" parent="." instance=ExtResource("8_8i8hp")]
 position = Vector2(1535, 0)
+
+[node name="Control" parent="." instance=ExtResource("9_gsaar")]

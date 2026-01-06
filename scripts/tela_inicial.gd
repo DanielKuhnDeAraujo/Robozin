@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 
 func _on_iniciar_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/jogo.tscn")
+	print("era pra funcionar...")
 
 
 func _on_opcoes_pressed() -> void:
