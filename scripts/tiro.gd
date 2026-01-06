@@ -16,6 +16,8 @@ var destruir = 3
 func _ready() -> void:
 	velocity.y-=subir
 	SPEED =-100
+	if player.global_position.x > global_position.x :
+		pass
 	
 func _physics_process(delta: float) -> void:
 	if timer_bateu < 0.5 :

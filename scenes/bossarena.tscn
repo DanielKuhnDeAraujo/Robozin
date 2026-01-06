@@ -31,7 +31,7 @@ position_smoothing_speed = 10.0
 
 [node name="Player" parent="." instance=ExtResource("3_x5dpo")]
 unique_name_in_owner = true
-position = Vector2(-295, 166)
+position = Vector2(325, 165)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_3jhfb")]
 position = Vector2(4, 164)
