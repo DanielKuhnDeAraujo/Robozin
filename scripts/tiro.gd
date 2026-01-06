@@ -11,39 +11,27 @@ var pode_mover = true
 var vida = 1
 @onready var vida_inimigo: Node = $VidaInimigo
 var spawner
-
+var timer_bateu =0
+var destruir = 3
 func _ready() -> void:
-	var difx : float=-( global_position.x - player.global_position.x)
-	if abs(difx) < 100 : 
-		subir=190
-	velocity.y=-subir
-	#tempo de subida 
-	var t1: float = subir / gravidade
-	#altura maxima
-	var altura: float = subir * subir / (gravidade*2)
-	var dify: float  = global_position.y - player.global_position.y
-	dify=-dify
-	altura += dify
-	# tempo de queda
-	var antesraiz =(2*altura)/gravidade
-	var invert = false
-	if antesraiz < 0:
-		antesraiz = -antesraiz
-		invert = true
-	var t2 = sqrt(antesraiz)
-	tempo = t1 + t2
-	if invert :
-		tempo -=t2
-	SPEED =difx/tempo
+	velocity.y-=subir
+	SPEED =-100
 	
 func _physics_process(delta: float) -> void:
+	if timer_bateu < 0.5 :
+		timer_bateu -= delta
 	if pode_mover :
 		velocity.y+= gravidade *delta
 		velocity.x=SPEED
 		look_at(velocity+position)
 		var collision  = move_and_collide(velocity*delta)
-		if collision!=null :
-			queue_free()
+		if collision!=null and timer_bateu<=0 :
+			velocity = velocity.bounce(collision.get_normal())
+			timer_bateu = 0.1
+			velocity.y += subir/4
+			destruir-=1
+			if destruir == 0  :
+				queue_free() 
 
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
