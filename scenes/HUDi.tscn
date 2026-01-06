@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://btauhgjlre4db"]
+[gd_scene load_steps=2 format=3 uid="uid://yspebdfba2ww"]
 
-[ext_resource type="Script" uid="uid://c2mj24rqyun2o" path="res://scripts/hud.gd" id="1_qpvh6"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_qpvh6"]
 
 [node name="Hud" type="CanvasLayer"]
 
@@ -11,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_qpvh6")
 
 [node name="MarginContainer" type="MarginContainer" parent="hud_root"]
@@ -19,12 +20,15 @@ offset_left = 52.0
 offset_top = 37.0
 offset_right = 317.0
 offset_bottom = 246.0
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="hud_root/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="hud_root/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="vda" type="Label" parent="hud_root/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(60, 0)
@@ -34,10 +38,12 @@ text = "hp :"
 [node name="barra_vida" type="ProgressBar" parent="hud_root/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
+mouse_filter = 2
 show_percentage = false
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="hud_root/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="municao" type="Label" parent="hud_root/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(60, 0)
@@ -47,4 +53,5 @@ text = "ammo :"
 [node name="barra_municao" type="ProgressBar" parent="hud_root/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(150, 20)
 layout_mode = 2
+mouse_filter = 2
 show_percentage = false
