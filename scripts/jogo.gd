@@ -1,9 +1,9 @@
 extends Node2D
+var vida = 15
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func dano(qtd: int,tipo: String ) :
+	vida-=qtd
+	if vida <= 0 :
+		morrer()
+func morrer() :
 	pass
