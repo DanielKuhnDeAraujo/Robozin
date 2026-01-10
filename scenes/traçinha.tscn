@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cm7de7qh4tniv"]
 
-[ext_resource type="Script" uid="uid://daga8cin1chnn" path="res://scripts/tiro.gd" id="1_auy44"]
+[ext_resource type="Script" uid="uid://dn3xw2iab1csv" path="res://scripts/traçinha.gd" id="1_auy44"]
 [ext_resource type="Texture2D" uid="uid://dwyylwaxtj8oa" path="res://assets/tracin.png" id="2_auy44"]
 [ext_resource type="PackedScene" uid="uid://c0ercwv2o6t8e" path="res://scenes/kill.tscn" id="3_8h0xb"]
 [ext_resource type="PackedScene" uid="uid://cp7nugqtq00au" path="res://scenes/vida_inimigo.tscn" id="4_a5eh2"]
