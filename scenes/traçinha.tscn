@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://cm7de7qh4tniv"]
+
+[ext_resource type="Script" uid="uid://dn3xw2iab1csv" path="res://scripts/traçinha.gd" id="1_auy44"]
+[ext_resource type="Texture2D" uid="uid://dwyylwaxtj8oa" path="res://assets/tracin.png" id="2_auy44"]
+[ext_resource type="PackedScene" uid="uid://c0ercwv2o6t8e" path="res://scenes/kill.tscn" id="3_8h0xb"]
+[ext_resource type="PackedScene" uid="uid://cp7nugqtq00au" path="res://scenes/vida_inimigo.tscn" id="4_a5eh2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhr7l"]
+atlas = ExtResource("2_auy44")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8h0xb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhr7l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66fgb"]
+size = Vector2(19, 9)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["inimigos"]]
+collision_layer = 2147483648
+script = ExtResource("1_auy44")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, 0)
+rotation = -3.1415925
+sprite_frames = SubResource("SpriteFrames_8h0xb")
+
+[node name="Area2D" parent="." instance=ExtResource("3_8h0xb")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_66fgb")
+debug_color = Color(0.977469, 0, 0.40755582, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_66fgb")
+
+[node name="VidaInimigo" parent="." instance=ExtResource("4_a5eh2")]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
